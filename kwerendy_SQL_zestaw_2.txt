@@ -1,0 +1,16 @@
+1) delete from postac where wiek > 58;
+a) alter table postac drop constraint postac_ibfk_1;
+b) alter table walizka drop constraint walizka_ibfk_1;
+c) alter table przetwory drop constraint przetwory_ibfk_1;
+d) alter table przetwory drop constraint przetwory_ibfk_2;
+e) alter table postac modify column id_postaci int;
+f) alter table postac drop primary key;
+2)
+a) alter table postac add pesel VARCHAR(11);
+b) alter table postac add primary key(pesel);
+c) alter table postac modify column rodzaj ENUM('ptak','wiking','kobieta','syrena');
+d) insert into postac (id_postaci,nazwa,rodzaj,pesel) VALUES (7,"Gertruda Nieszczera","syrena","12345678907");
+3) 
+a) update postac set nazwa_statku = "statek1" where nazwa like '%a%';
+b)  update statek set max_ladownosc = max_ladownosc * 0.7 where data_wodowania Between "1901-1-1" and "2000-12-31";
+

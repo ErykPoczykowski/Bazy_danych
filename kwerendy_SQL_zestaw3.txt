@@ -19,6 +19,7 @@ b)select concat(nazwa,'-',rodzaj) from kreatura where rodzaj like 'wi%';
 c)select nazwa, (ilosc*waga) as waga_calkowita from zasob where dataPozyskania between '2000-01-01' and '2007-12-31';
 5.
 a)select nazwa,(waga*ilosc*0.3) as waga_odpadkow, (waga*ilosc*0.7) as waga_wlasciwa from zasob where rodzaj = 'jedzenie';
-b) select * from zasob where rodzaj is null;
-c) select distinct * from zasob where nazwa like 'Ba%' or nazwa like '%os' order by nazwa;
+bselect SUM(waga*ilosc*0.7) as suma_wlasciwa, SUM(waga*ilosc*0.3) as suma_odpadkow from zasob where rodzaj = 'jedzenie';
+c) select * from zasob where rodzaj is null;
+d) select distinct * from zasob where nazwa like 'Ba%' or nazwa like '%os' order by nazwa;
 

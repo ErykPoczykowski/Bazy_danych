@@ -12,5 +12,26 @@ c) alter table postac modify column rodzaj ENUM('ptak','wiking','kobieta','syren
 d) insert into postac (id_postaci,nazwa,rodzaj,pesel) VALUES (7,"Gertruda Nieszczera","syrena","12345678907");
 3) 
 a) update postac set nazwa_statku = "statek1" where nazwa like '%a%';
-b)  update statek set max_ladownosc = max_ladownosc * 0.7 where data_wodowania Between "1901-1-1" and "2000-12-31";
+b) update statek set max_ladownosc = max_ladownosc * 0.7 where data_wodowania Between "1901-1-1" and "2000-12-31";
+4)
+a) insert into postac (id_postaci,nazwa,data_ur,wiek,pesel) VALUES (8,'Waz Loko','2001-09-11',22,'12345678908');
+b)create table Marynarz (id_postaci INT, nazwa varchar(40),rodzaj ENUM('ptak','wiking','kobieta','syrena'), data_ur date, wiek int unsigned,funkcja varchar(30),nazwa_statku varchar(50),pesel varchar(30),PRIMARY KEY(pesel),Foreign key(nazwa_statku) references statek(nazwa_statku));
+c)insert into Marynarz(id_postaci,nazwa,rodzaj,data_ur,wiek,funkcja,nazwa_statku,pesel) Values (1,'Bjorn','wiking','1984-08-13',23,'kapitan','statek2','12345678901'),
+    -> (2,'Drozd','ptak','2015-09-15',6,NULL,'statek1','12345678902'),
+    -> (3,'Tesciowa','kobieta','2018-05-13',57,NULL,'statek1','12345678903'),
+    -> (4,'Wiking1','wiking','1984-11-12',49,NULL,'statek2','12345678904'),
+    -> (5,'Wiking2','wiking','1984-11-12',49,NULL,'statek2','12345678905'),
+    -> (6,'Wiking3','wiking','1984-11-12',49,NULL,'statek2','12345678906'),
+    -> (7,'Getruda Nieszczera','syrena',NULL,NULL,NULL,'statek1','12345678907');
+5)
+a)update postac set nazwa_statku = NULL;
+b)update Marynarz set nazwa_statku = NULL;
+c)delete from postac where id_postaci = 6;
+d)delete from Marynarz  where id_postaci = 6;
+e)alter table Marynarz drop constraint `Marynarz_ibfk_1`;
+f)Truncate table statek;
+g)drop table statek;
+h)Create table zwierz(id int AUTO_INCREMENT,nazwa VARCHAR(50),wiek int, PRIMARY KEY(id));
+i) INSERT into zwierz(nazwa,wiek) VALUES('Drozd',6),('Waz Loko',22);
+
 

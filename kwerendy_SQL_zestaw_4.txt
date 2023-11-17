@@ -1,0 +1,20 @@
+1)
+a) select AVG(waga) from kreatura where rodzaj ='wiking';
+b) select AVG(waga) from kreatura group by rodzaj;
+c) select AVG((YEAR(CURDATE())) - (YEAR(dataUr))) from kreatura group by rodzaj;
+2)
+a) select SUM(waga* ilosc), rodzaj from zasob group by rodzaj;
+b) select AVG(waga),nazwa,SUM(waga* ilosc) from zasob where ilosc >=4 group by nazwa Having SUM(waga* ilosc) > 10;
+c) select count(distinct nazwa),rodzaj from zasob group by rodzaj having count(ilosc) > 1;
+3)
+a)select kreatura.idKreatury as idKreatury,kreatura.nazwa as nazwa,ekwipunek.ilosc as ilosc from kreatura join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury;
+b)select kreatura.idKreatury as idKreatury,kreatura.nazwa as nazwa,zasob.nazwa as nazwa from kreatura join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury join zasob on ekwipunek.idZasobu = zasob.idZasobu;
+c)select kreatura.idKreatury,kreatura.nazwa from kreatura left join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury where kreatura.idKreatury is null ;
+ select idKreatury, nazwa from kreatura where kreatura.idKreatury not in(select ekwipunek.idKreatury from ekwipunek);
+4)
+a)select kreatura.nazwa, zasob.nazwa from kreatura join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury join zasob on ekwipunek.idZasobu = zasob.idZasobu where YEAR(kreatura.dataUr) between 1670 and 1679;
+b)select kreatura.nazwa, zasob.rodzaj, kreatura.dataUr as wiek from kreatura join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury join zasob on ekwipunek.idZasobu = zasob.idZasobu where zasob.rodzaj = 'jedzenie' order by dataUr desc limit 5;
+c)select * from (select kreatura.*, row_number() over() rn from kreatura) ok where ok.rn % 5 = 1 or ok.rn = 1;
+5
+a)select AVG(zasob.waga* ekwipunek.ilosc) from kreatura join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury join zasob on ekwipunek.idZasobu = zasob.idZasobu where kreatura.rodzaj != 'malpa' or kreatura.rodzaj !='waz' and ekwipunek.ilosc <30 group by kreatura.rodzaj;
+b)

@@ -17,4 +17,4 @@ b)select kreatura.nazwa, zasob.rodzaj, kreatura.dataUr as wiek from kreatura joi
 c)select * from (select kreatura.*, row_number() over() rn from kreatura) ok where ok.rn % 5 = 1 or ok.rn = 1;
 5
 a)select AVG(zasob.waga* ekwipunek.ilosc) from kreatura join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury join zasob on ekwipunek.idZasobu = zasob.idZasobu where kreatura.rodzaj != 'malpa' or kreatura.rodzaj !='waz' and ekwipunek.ilosc <30 group by kreatura.rodzaj;
-b)
+b)SELECT rodzaj, MIN(nazwa) As Najml, MAX(nazwa) As Najst, MIN(dataUr) AS NajmlDU, MAX(dataUr) AS NajstDU FROM kreatury GROUP BY rodzaj;

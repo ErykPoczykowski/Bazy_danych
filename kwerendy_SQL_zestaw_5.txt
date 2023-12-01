@@ -7,4 +7,8 @@ d) create table wyprawa as select * from wikingowie.wyprawa;
 1.2) select distinct nazwa,idKreatury,id_uczestnika from kreatura left join uczestnicy on kreatura.idKreatury = uczestnicy.id_uczestnika where id_uczestnika is null;
 1.3) select wyprawa.nazwa, sum(zasob.waga * zasob.ilosc) as SumWaga from kreatura join uczestnicy on kreatura.idKreatury= uczestnicy.id_uczestnika join wyprawa on wyprawa.id_wyprawy= uczestnicy.id_wyprawy join ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury join zasob on ekwipunek.idZasobu=zasob.idZasobu group by wyprawa.nazwa;
 2)
-2.1) select wyprawa.nazwa, count(uczestnicy.id_uczestnika), GROUP_CONCAT(kreatura.nazwa) from wyprawa join uczestnicy on wyprawa.id_wyprawy=uczestnicy.id_wyprawy join kreatura on uczestnicy.id_uczestnika=kreatura.idKreatury grouprawa.nazwa;
+2.1) select wyprawa.nazwa, count(uczestnicy.id_uczestnika), GROUP_CONCAT(kreatura.nazwa) from wyprawa join uczestnicy on wyprawa.id_wyprawy=uczestnicy.id_wyprawy join kreatura on uczestnicy.id_uczestnika=kreatura.idKreatury group by wyprawa.nazwa;
+2.2) select etapy_wyprawy.idEtapu, sektor.nazwa, etapy_wyprawy.kolejnosc, kreatura.nazwa, kreatura.idKreatury, wyprawa.kierownik from sektor left join etapy_wyprawy on sektor.id_sektora = etapy_wyprawy.sektor left join wyprawa on etapy_wyprawy.idWyprawy=wyprawa.id_wyprawy left join uczestnicy on wyprawa.id_wyprawy=uczestnicy.id_wyprawy left join kreatura on uczestnicy.id_uczestnika=kreatura.idKreatury order by wyprawa.data_rozpoczecia, etapy_wyprawy.kolejnosc;
+3)
+3.1) select sektor.nazwa,count(ifnull(etapy_wyprawy.sektor,0)) from sektor left join etapy_wyprawy on sektor.id_sektora=etapy_wyprawy.sektor group by sektor.nazwa;
+3.2)

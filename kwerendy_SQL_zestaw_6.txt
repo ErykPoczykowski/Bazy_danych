@@ -1,0 +1,15 @@
+1)
+1.1)
+a.1) delimiter $$
+a.2) create trigger sprawdzacz_ins before insert ON kreatura FOR EACH ROW begin IF (waga < 0) THEN SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'uwaga, waga < 0!'; END IF; END;$$
+a.3) delimiter ;
+b.1) delimiter $$ 
+b.2) create trigger before update ON kreatura FOR EACH ROW begin IF (waga < 0) THEN SELECT "waga < 0!" AS Output END IF; END;$$
+b.3) delimiter ;
+2)create trigger trigger_2 AFTER DELETE ON wyprawa FOR EACH ROW begin insert into archiwum_wyprawy(id_wyprawy, nazwa, data_rozpoczecia, data_zakonczenia,kierownik) values (OLD.id_wyprawy, OLD.nazwa, OLD.data_rozpoczecia, OLD.data_zakonczenia, OLD.kierownik); END; $$
+3.1)CREATE PROCEDURE eliksir_sily (IN zmienna int) begin update kreatura set waga = waga * 1.2 where idKreatury = zmienna; end$$
+3.2) create function duze_litery(tekst varchar(10)) returns varchar(10) deterministic begin Set tekst = Upper(tekst); return (tekst); end$$
+4.1)create table system_alarmowy(id_alarmu int, wiadomosc varchar(200));
+4.2) create trigger system_alarmowy before insert ON wyprawa FOR EACH ROW begin IF (kreatura.idKreatury == 14 AND) THEN SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'uwaga, waga < 0!'; END IF; END;$$
+5.1)CREATE PROCEDURE info_kreatura_udzwig (OUT srednia float, OUT suma float, OUT maks float) begin select avg(udzwig) into srednia from kreatura; select sum(udzwig) into suma from kreatura; select max(udzwig) into maks from kreatura;  end$$
+5.2)
